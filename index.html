@@ -255,9 +255,12 @@
         }
 
         @keyframes queenFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg);
             }
+
             50% {
                 transform: translateY(-8px) rotate(1deg);
             }
@@ -273,6 +276,7 @@
                 filter: blur(14px);
                 opacity: 0.65;
             }
+
             100% {
                 transform: scale(1.08);
                 filter: blur(24px);
@@ -344,9 +348,6 @@
 </head>
 
 <body class="relative min-h-screen text-slate-100 selection:bg-pink-500 selection:text-white">
-
-    <!-- Background Audio -->
-    <audio id="bgMusic" src="birthday_songs.mp3" loop preload="auto"></audio>
 
     <!-- Background Particles Canvas -->
     <canvas id="bgCanvas"></canvas>
@@ -732,7 +733,6 @@
     <script>
         // Audio Controller for Background Song & Sound Effects
         let audioCtx = null;
-        const bgMusic = document.getElementById('bgMusic');
 
         function initAudio() {
             if (!audioCtx) {
@@ -750,7 +750,6 @@
             const text = document.getElementById('audioText');
             const bgMusic = document.getElementById('bgMusic');
 
-<<<<<<< HEAD
             if (bgMusic.paused) {
                 bgMusic.play().then(() => {
                     icon.innerHTML = '<i class="fa-solid fa-volume-high animate-bounce"></i>';
@@ -758,29 +757,20 @@
                 }).catch(err => {
                     console.log('Audio playback prevented:', err);
                 });
-=======
-            if (isAudioPlaying) {
-                icon.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-                text.innerText = 'Music On 🎵';
-                if (bgMusic) bgMusic.play();
-                startMelodyLoop();
->>>>>>> 1c2d8505acde60e99a6f8c7e2f5e53c187df70d6
             } else {
                 bgMusic.pause();
                 icon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
                 text.innerText = 'Play Music 🎵';
-<<<<<<< HEAD
-=======
-                if (bgMusic) bgMusic.pause();
-                clearInterval(melodyInterval);
->>>>>>> 1c2d8505acde60e99a6f8c7e2f5e53c187df70d6
             }
         }
 
         // Background Particle Canvas Logic
         const bgCanvas = document.getElementById('bgCanvas');
         const bgCtx = bgCanvas.getContext('2d');
+        const smokeCanvas = document.getElementById('smokeCanvas');
+        const smokeCtx = smokeCanvas.getContext('2d');
         let bgParticles = [];
+        let smokeParticles = [];
 
         function resizeCanvas() {
             bgCanvas.width = window.innerWidth;
@@ -865,10 +855,6 @@
             });
             requestAnimationFrame(animateBgCanvas);
         }
-
-        const smokeCanvas = document.getElementById('smokeCanvas');
-        const smokeCtx = smokeCanvas.getContext('2d');
-        let smokeParticles = [];
 
         class SmokeParticle {
             constructor(x, y) {
